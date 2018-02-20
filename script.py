@@ -33,8 +33,8 @@ def invalidate_timer():
         print("Very Poor Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
 
 
-t = Timer(WAIT_TIME, invalidate_timer)
-t.start()
+#t = Timer(WAIT_TIME, invalidate_timer)
+#t.start()
 
 print('Reading MCP3008 values, press Ctrl-C to quit...')
 print("START:   " + str(datetime.now()))
