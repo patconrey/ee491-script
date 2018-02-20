@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 Ts = 0.001
-WAIT_TIME = 1  # [s]
+WAIT_TIME = 5  # [s]
 shouldContinue = True
 samples = []
 
@@ -19,36 +19,22 @@ SPI_PORT = 0
 SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
-def invalidate_timer():
-    shouldContinue = False
-    actual = len(samples)
-    expected = WAIT_TIME / Ts
-    print("Suspected Samples: " + repr(expected))
-    print("Actual Samples: " + repr(actual))
-    if expected == actual:
-        print("Perfect Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
-    elif actual > 0.9 * expected:
-        print("Alright Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
-    else:
-        print("Very Poor Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
+# t = Timer(WAIT_TIME, invalidate_timer)
+# t.start()
 
+print('Reading MCP3008 values')
+# start = datetime.now()
 
-#t = Timer(WAIT_TIME, invalidate_timer)
-#t.start()
-
-print('Reading MCP3008 values, press Ctrl-C to quit...')
-start = datetime.now()
-print("START:   " + str(start))
-for x in range(0, 20000):
+fs = 17601  # Hz
+for x in range(0, WAIT_TIME * fs):
     samples.append(mcp.read_adc(0))
 
-end = datetime.now()
-print("END:     " + str(end))
+file = open('touch.txt', 'w')
+for sample in samples:
+    file.write("%s\n" % sample)
 
-print("Diff:    " + str(end - start))
-
-
-
-#while shouldContinue:
- #   samples.append(mcp.read_adc(0))
-  #  # time.sleep(Ts)
+file.close()
+print('Finished writing file, press Ctrl-C to quit...')
+# end = datetime.now()
+# print("END:     " + str(end))
+# print("DIFF:    " + str(end - start))
