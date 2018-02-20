@@ -22,11 +22,11 @@ def invalidate_timer():
     print("Suspected Samples: " + str(1/Ts))
     print("Actual Samples: " + str(len(samples)))
     if (1/Ts) == len(samples):
-        print("🔥🔥🔥🔥🔥🔥🔥🔥")
+        print("Perfect Performance | Sampling: " + str(len(samples)) + " Out of: " + str(1 / Ts))
     elif float(len(samples)) > 0.9*(1/Ts):
-        print("🙁🙁🙁🙁🙁🙁🙁🙁")
+        print("Alright Performance | Sampling: " + str(len(samples)) + " Out of: " + str(1 / Ts))
     else:
-        print("😢😢😢😢😢😢😢😢")
+        print("Very Poor Performance | Sampling: " + str(len(samples)) + " Out of: " + str(1/Ts))
 
 
 t = Timer(Ts, invalidate_timer)
