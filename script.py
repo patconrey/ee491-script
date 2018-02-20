@@ -6,6 +6,7 @@ import time
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 from threading import Timer
+from datetime import datetime
 
 
 Ts = 0.001
@@ -36,23 +37,17 @@ t = Timer(WAIT_TIME, invalidate_timer)
 t.start()
 
 print('Reading MCP3008 values, press Ctrl-C to quit...')
-while shouldContinue:
+print("START:   " + str(datetime.now()))
+for x in range(0, 20000):
     samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    samples.append(mcp.read_adc(0))
-    # time.sleep(Ts)
+
+
+print("END:     " + str(datetime.now()))
+
+
+
+
+
+#while shouldContinue:
+ #   samples.append(mcp.read_adc(0))
+  #  # time.sleep(Ts)
