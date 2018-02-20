@@ -37,14 +37,15 @@ def invalidate_timer():
 #t.start()
 
 print('Reading MCP3008 values, press Ctrl-C to quit...')
-print("START:   " + str(datetime.now()))
+start = datetime.now()
+print("START:   " + str(start))
 for x in range(0, 20000):
     samples.append(mcp.read_adc(0))
 
+end = datetime.now()
+print("END:     " + str(end))
 
-print("END:     " + str(datetime.now()))
-
-
+print("Diff:    " + str(end - start))
 
 
 
