@@ -8,7 +8,7 @@ import Adafruit_MCP3008
 from threading import Timer
 
 
-Ts = 0.0001
+Ts = 0.001
 WAIT_TIME = 1  # [s]
 shouldContinue = True
 samples = []
