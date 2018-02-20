@@ -9,6 +9,7 @@ from threading import Timer
 
 
 Ts = 0.0001
+WAIT_TIME = 1  # [s]
 shouldContinue = True
 samples = []
 
@@ -19,17 +20,19 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 def invalidate_timer():
     shouldContinue = False
-    print("Suspected Samples: " + repr(float(1/Ts)))
-    print("Actual Samples: " + repr(len(samples)))
-    if (1/Ts) == len(samples):
-        print("Perfect Performance | Sampling: " + repr(len(samples)) + " Out of: " + repr(1 / Ts))
-    elif float(len(samples)) > 0.9*(1/Ts):
-        print("Alright Performance | Sampling: " + repr(len(samples)) + " Out of: " + repr(1 / Ts))
+    actual = len(samples)
+    expected = WAIT_TIME / Ts
+    print("Suspected Samples: " + repr(expected))
+    print("Actual Samples: " + repr(actual))
+    if expected == actual:
+        print("Perfect Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
+    elif actual > 0.9 * expected:
+        print("Alright Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
     else:
-        print("Very Poor Performance | Sampling: " + repr(len(samples)) + " Out of: " + repr(1/Ts))
+        print("Very Poor Performance | Sampling: " + repr(actual) + " Out of: " + repr(expected))
 
 
-t = Timer(Ts, invalidate_timer)
+t = Timer(WAIT_TIME, invalidate_timer)
 t.start()
 
 print('Reading MCP3008 values, press Ctrl-C to quit...')
