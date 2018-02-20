@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 Ts = 0.001
-WAIT_TIME = 5  # [s]
+WAIT_TIME = 20  # [s]
 shouldContinue = True
 samples = []
 
