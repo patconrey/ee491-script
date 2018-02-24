@@ -22,19 +22,24 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 # t = Timer(WAIT_TIME, invalidate_timer)
 # t.start()
 
-print('Reading MCP3008 values')
+
+while True:
+    print(mcp.read_adc(0)*"-" + "X")
+    time.sleep(0.5)
+
+#print('Reading MCP3008 values')
 # start = datetime.now()
 
-fs = 17601  # Hz
-for x in range(0, WAIT_TIME * fs):
-    samples.append(mcp.read_adc(0))
+#fs = 17601  # Hz
+#for x in range(0, WAIT_TIME * fs):
+#    samples.append(mcp.read_adc(0))
 
-file = open('samples.txt', 'w')
-for sample in samples:
-    file.write("%s\n" % sample)
+#file = open('samples.txt', 'w')
+#for sample in samples:
+#    file.write("%s\n" % sample)
 
-file.close()
-print('Finished writing file, press Ctrl-C to quit...')
+#file.close()
+#print('Finished writing file, press Ctrl-C to quit...')
 # end = datetime.now()
 # print("END:     " + str(end))
 # print("DIFF:    " + str(end - start))
