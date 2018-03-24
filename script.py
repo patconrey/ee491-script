@@ -24,7 +24,7 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 
 while True:
-    print(mcp.read_adc(0)*"-" + "X")
+    print(mcp.read_adc(0))
     time.sleep(0.5)
 
 #print('Reading MCP3008 values')
