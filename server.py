@@ -24,7 +24,7 @@
 #
 ###############################################################################
 
-from autobahn.asyncio.websocket import WebSocketServerProtocol, \
+from autobahn.twisted.websocket import WebSocketServerProtocol, \
     WebSocketServerFactory
 import time
 import Adafruit_GPIO.SPI as SPI
