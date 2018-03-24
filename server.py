@@ -45,9 +45,9 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("WebSocket connection open.")
 
     def onMessage(self, payload, isBinary):
-        print("Received INIT signal.")
+        print("Received initialization signal.")
         self.sendMessage(payload, isBinary)
-        self.beginSampling(self, isBinary)
+        #self.beginSampling(self, isBinary)
 
     def onClose(self, wasClean, code, reason):
         print("WebSocket connection closed: {0}".format(reason))
