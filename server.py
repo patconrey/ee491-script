@@ -54,6 +54,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
     def beginSampling(self, isBinary, dummy):
         print("Will sample signal.")
+        print("Initial sample = ", mcp.read_adc(0))
         self.sendMessage(str(mcp.read_adc(0)), False)
         while True:
             sample = mcp.read_adc(0)
