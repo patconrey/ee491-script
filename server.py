@@ -38,8 +38,8 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 def beginSamplingGlobal(protocol, isBinary):
     print("Will sample signal.")
+    protocol.sendMessage(str(mcp.read_adc(0)), False)
     while True:
-        print("__ sample __", mcp.read_adc(0))
         sample = mcp.read_adc(0)
         protocol.sendMessage(str(sample), isBinary)
         time.sleep(0.5)
