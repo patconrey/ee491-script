@@ -36,9 +36,6 @@ SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 
-def beginSamplingGlobal(protocol, isBinary):
-
-
 class MyServerProtocol(WebSocketServerProtocol):
 
     def onConnect(self, request):
