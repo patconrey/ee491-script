@@ -24,7 +24,7 @@
 #
 ###############################################################################
 
-from autobahn.twisted.websocket import WebSocketServerProtocol, \
+from autobahn.asyncio.websocket import WebSocketServerProtocol, \
     WebSocketServerFactory
 import time
 import Adafruit_GPIO.SPI as SPI
@@ -58,7 +58,7 @@ class MyServerProtocol(WebSocketServerProtocol):
         for x in range(0, 100):
             sample = mcp.read_adc(0)
             self.sendMessage(str(sample), isBinary)
-            time.sleep(0.5)
+            time.sleep(0.05)
 
 
 if __name__ == '__main__':
