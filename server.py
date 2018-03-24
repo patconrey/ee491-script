@@ -36,6 +36,13 @@ SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 
+def beginSamplingGlobal(protocol, isBinary):
+    print("Will sample signal.")
+    while True:
+        sample = mcp.read_adc(0)
+        protocol.sendMessage(str(sample), isBinary)
+
+
 class MyServerProtocol(WebSocketServerProtocol):
 
     def onConnect(self, request):
@@ -46,7 +53,8 @@ class MyServerProtocol(WebSocketServerProtocol):
 
     def onMessage(self, payload, isBinary):
         print("Received INIT signal.")
-        self.beginSampling(self, isBinary)
+        #self.beginSampling(self, isBinary)
+        beginSamplingGlobal(self, isBinary)
 
     def onClose(self, wasClean, code, reason):
         print("WebSocket connection closed: {0}".format(reason))
