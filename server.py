@@ -46,6 +46,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
     def onMessage(self, payload, isBinary):
         print("Received INIT signal.")
+        self.sendMessage("Message from the initial receive.", False)
         self.beginSampling(self, isBinary)
 
     def onClose(self, wasClean, code, reason):
