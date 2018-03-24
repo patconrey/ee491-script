@@ -55,7 +55,7 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("Will sample signals.")
         while True:
             sample = mcp.read_adc(0)
-            self.sendMessage(sample, isBinary)
+            self.sendMessage(str(sample), isBinary)
             time.sleep(0.5)
 
 
