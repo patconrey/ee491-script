@@ -52,13 +52,13 @@ class MyServerProtocol(WebSocketServerProtocol):
     def onClose(self, wasClean, code, reason):
         print("WebSocket connection closed: {0}".format(reason))
 
-    def beginSampling(self, isBinary, dummy):
+    def beginSampling(self, isBinary, contentToPost, dummy):
         print("Will sample signal.")
-        self.sendMessage(str(mcp.read_adc(0)), isBinary)
-        for x in range(0, 100):
-            sample = mcp.read_adc(0)
-            self.sendMessage(str(sample), isBinary)
-            time.sleep(0.05)
+        buffer = []
+        for x in range(0, 850):
+            buffer.append(mcp.read_adc(0))
+        self.sendMessage(contentToPost, isBinary)
+        self.beginSampling(self, isBinary, buffer, dummy)
 
 
 if __name__ == '__main__':
