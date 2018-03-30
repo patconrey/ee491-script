@@ -46,19 +46,19 @@ class MyServerProtocol(WebSocketServerProtocol):
 
     def onMessage(self, payload, isBinary):
         print("Received initialization signal.")
-        #self.sendMessage(payload, isBinary)
+        #self.sendMessage(payload, isBinary, )
         self.beginSampling(self, isBinary)
 
     def onClose(self, wasClean, code, reason):
         print("WebSocket connection closed: {0}".format(reason))
 
-    def beginSampling(self, isBinary, contentToPost, dummy):
+    def beginSampling(self, isBinary, dummy):
         print("Will sample signal.")
         buffer = []
         for x in range(0, 850):
             buffer.append(x)
-        self.sendMessage(contentToPost, isBinary)
-        self.beginSampling(self, isBinary, buffer, dummy)
+        self.sendMessage(buffer, isBinary)
+        self.beginSampling(self, isBinary, dummy)
 
 
 if __name__ == '__main__':
