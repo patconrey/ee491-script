@@ -56,7 +56,7 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("Will sample signal.")
         buffer = []
         for x in range(0, 850):
-            buffer.append(mcp.read_adc(0))
+            buffer.append(x)
         self.sendMessage(contentToPost, isBinary)
         self.beginSampling(self, isBinary, buffer, dummy)
 
