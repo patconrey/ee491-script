@@ -13,8 +13,6 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 start = datetime.datetime.now()
 
-time.sleep(10)
-
 for x in range(0, NUM_SAMPLES):
     samples.append(mcp.read_adc(0))
 
