@@ -1,4 +1,7 @@
 import datetime
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_MCP3008
+
 samples = []
 
 # Hardware SPI configuration:
