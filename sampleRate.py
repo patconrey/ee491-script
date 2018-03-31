@@ -4,7 +4,7 @@ import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 
 samples = []
-NUM_SAMPLES = 500000
+NUM_SAMPLES = 100000
 
 # Hardware SPI configuration:
 SPI_PORT = 0
