@@ -28,7 +28,7 @@ from autobahn.twisted.websocket import WebSocketServerProtocol, \
     WebSocketServerFactory
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
-import math
+import time
 
 # GLOBAL VARIABLES
 SPI_PORT = 0
@@ -47,9 +47,10 @@ class MyServerProtocol(WebSocketServerProtocol):
     def onMessage(self, payload, isBinary):
         print("Received initialization signal.")
         buffer = []
-        # Grab 3 [s] of data based on sample rate of 16.666 [kHz]
-        for x in range(0, (16666 * 3)):
+        # Grab 3 [s] of data based on sample rate of 8 [kHz]
+        for x in range(0, (8000 * 3)):
             buffer.append(mcp.read_adc(0))
+            time.sleep(0.000125)
         self.sendMessage(str(buffer), isBinary)
 
     def onClose(self, wasClean, code, reason):
