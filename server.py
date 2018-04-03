@@ -45,7 +45,6 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("WebSocket connection open.")
 
     def onMessage(self, payload, isBinary):
-        print("Received initialization signal.")
         buffer = []
         # Grab 0.025 [s] of data based on sample rate of 8 [kHz]
         for x in range(0, 200 - 1):
