@@ -47,8 +47,8 @@ class MyServerProtocol(WebSocketServerProtocol):
     def onMessage(self, payload, isBinary):
         print("Received initialization signal.")
         buffer = []
-        # Grab 0.5 [s] of data based on sample rate of 8 [kHz]
-        for x in range(0, 4000 - 1):
+        # Grab 0.025 [s] of data based on sample rate of 8 [kHz]
+        for x in range(0, 200 - 1):
             buffer.append((mcp.read_adc(0) - 512) / 512.0)
             time.sleep(0.000125)
         self.sendMessage(str(buffer), isBinary)
