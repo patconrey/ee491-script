@@ -49,8 +49,9 @@ class MyServerProtocol(WebSocketServerProtocol):
         buffer = []
         # Grab 0.025 [s] of data based on sample rate of 8 [kHz]
         for x in range(0, 200 - 1):
-            #buffer.append(mcp.read_adc(0) / 1024.0)
-            buffer.append(random.random())
+            buffer.append(mcp.read_adc(0) / 1024.0)
+            #buffer.append(random.random())
+            print(mcp.read_adc(0))
             time.sleep(0.000125)
         self.sendMessage(str(buffer), isBinary)
 
