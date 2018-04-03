@@ -29,6 +29,7 @@ from autobahn.twisted.websocket import WebSocketServerProtocol, \
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 import time
+import random
 
 # GLOBAL VARIABLES
 SPI_PORT = 0
@@ -48,7 +49,8 @@ class MyServerProtocol(WebSocketServerProtocol):
         buffer = []
         # Grab 0.025 [s] of data based on sample rate of 8 [kHz]
         for x in range(0, 200 - 1):
-            buffer.append(mcp.read_adc(0) / 1024.0)
+            #buffer.append(mcp.read_adc(0) / 1024.0)
+            buffer.append(random.random())
             time.sleep(0.000125)
         self.sendMessage(str(buffer), isBinary)
 
